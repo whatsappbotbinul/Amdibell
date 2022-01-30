@@ -1,11 +1,3 @@
-/* Copyright (C) 2021 AmdA.
-
-Licensed under the  GPL-3.0 License;
-you may not use this file except in compliance with the License.
-
-Amdibell - AmdA
-*/
-
 const Asena = require('../events');
 const {MessageType, MessageOptions, Mimetype} = require('@adiwajshing/baileys');
 const axios = require('axios');
@@ -16,7 +8,7 @@ const Lang = Language.getString('anime');
 
 if (Config.WORKTYPE == 'private') {
 
-    Asena.addCommand({pattern: 'ranime ?(.*)', fromMe: true, desc: Lang.AN}, (async (message, match) => {
+    Asena.addCommand({pattern: 'anime', fromMe: true, desc: Lang.AN}, (async (message, match) => {
 
     var r_text = new Array ();
 
@@ -104,13 +96,13 @@ if (Config.WORKTYPE == 'private') {
 
     var respoimage = await axios.get(`${r_text[i]}`, { responseType: 'arraybuffer' })
 
-    await message.sendMessage(Buffer(respoimage.data), MessageType.image, {quoted: message.data}, {mimetype: Mimetype.png, caption: 'Copyright © 2021 | 𝖰𝗎𝖾𝖾𝗇 𝖠𝗆𝖽𝗂𝖻𝖾𝗅𝗅'})
+    await message.sendMessage(Buffer(respoimage.data), MessageType.image, {mimetype: Mimetype.png, caption: 'Made by Ms Dileepa🐱‍👤'})
 
     }));
 }
 else if (Config.WORKTYPE == 'public') {
 
-    Asena.addCommand({pattern: 'ranime ?(.*)', fromMe: false, desc: Lang.AN}, (async (message, match) => {
+    Asena.addCommand({pattern: 'anime', fromMe: false, desc: Lang.AN}, (async (message, match) => {
 
     var r_text = new Array ();
 
@@ -198,7 +190,7 @@ else if (Config.WORKTYPE == 'public') {
 
     var respoimage = await axios.get(`${r_text[i]}`, { responseType: 'arraybuffer' })
 
-    await message.sendMessage(Buffer(respoimage.data), MessageType.image, {quoted: message.data}, {mimetype: Mimetype.png, caption: 'Copyright © 2021 | 𝖰𝗎𝖾𝖾𝗇 𝖠𝗆𝖽𝗂𝖻𝖾𝗅𝗅'})
+    await message.sendMessage(Buffer(respoimage.data), MessageType.image, {mimetype: Mimetype.png, caption: 'Made by Dileepa🐱‍👤'})
 
     }));
 }

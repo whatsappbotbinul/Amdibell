@@ -1,9 +1,6 @@
-/* Copyright (C) 2021 AmdA.
-
-Licensed under the  GPL-3.0 License;
-you may not use this file except in compliance with the License.
-
-Amdibell - AmdA
+/*Codded by @phaticusthiccy
+Telegram: https://t.me/phaticusthiccy
+Instagram: https://instagram.com/kyrie.baran
 */
 
 const Asena = require('../events');
@@ -19,12 +16,7 @@ const Lang = Language.getString('conventer');
 
 if (Config.WORKTYPE == 'private') {
 
-    Asena.addCommand({pattern: 'mp4audio', fromMe: true, desc: Lang.MP4TOAUDİO_DESC}, (async (message, match) => {    
-
-        if (message.jid === '905524317852-1612300121@g.us') {
-
-            return;
-        }
+    Asena.addCommand({pattern: 'mp3', fromMe: true, desc: Lang.MP4TOAUDİO_DESC}, (async (message, match) => {    
 
         if (message.reply_message === false) return await message.client.sendMessage(message.jid, Lang.MP4TOAUDİO_NEEDREPLY, MessageType.text);
         var downloading = await message.client.sendMessage(message.jid,Lang.MP4TOAUDİO,MessageType.text);
@@ -40,17 +32,12 @@ if (Config.WORKTYPE == 'private') {
             .withNoVideo()
             .save('output.mp3')
             .on('end', async () => {
-                await message.client.sendMessage(message.jid, fs.readFileSync('output.mp3'), MessageType.audio, {quoted: message.data}, {mimetype: Mimetype.mp4Audio, ptt: false});
+                await message.client.sendMessage(message.jid, fs.readFileSync('output.mp3'), MessageType.audio, {mimetype: Mimetype.mp4Audio, ptt: false});
             });
         return await message.client.deleteMessage(message.jid, {id: downloading.key.id, remoteJid: message.jid, fromMe: true})
     }));
 
-    Asena.addCommand({pattern: 'imagesticker', fromMe: true, desc: Lang.STİCKER_DESC}, (async (message, match) => {   
-
-        if (message.jid === '905524317852-1612300121@g.us') {
-
-            return;
-        }
+    Asena.addCommand({pattern: 'photo', fromMe: true, desc: Lang.STİCKER_DESC}, (async (message, match) => {   
  
         if (message.reply_message === false) return await message.client.sendMessage(message.jid, Lang.STİCKER_NEEDREPLY, MessageType.text);
         var downloading = await message.client.sendMessage(message.jid,Lang.STİCKER,MessageType.text);
@@ -66,19 +53,14 @@ if (Config.WORKTYPE == 'private') {
             .fromFormat('webp_pipe')
             .save('output.jpg')
             .on('end', async () => {
-                await message.client.sendMessage(message.jid, fs.readFileSync('output.jpg'), MessageType.image, {quoted: message.data}, {mimetype: Mimetype.jpg});
+                await message.client.sendMessage(message.jid, fs.readFileSync('output.jpg'), MessageType.image, {mimetype: Mimetype.jpg});
             });
         return await message.client.deleteMessage(message.jid, {id: downloading.key.id, remoteJid: message.jid, fromMe: true})
     }));
 }
 else if (Config.WORKTYPE == 'public') {
 
-    Asena.addCommand({pattern: 'mp4audio', fromMe: false, desc: Lang.MP4TOAUDİO_DESC}, (async (message, match) => {    
-
-        if (message.jid === '905524317852-1612300121@g.us') {
-
-            return;
-        }
+    Asena.addCommand({pattern: 'mp3', fromMe: false, desc: Lang.MP4TOAUDİO_DESC}, (async (message, match) => {    
 
         if (message.reply_message === false) return await message.client.sendMessage(message.jid, Lang.MP4TOAUDİO_NEEDREPLY, MessageType.text);
         var downloading = await message.client.sendMessage(message.jid,Lang.MP4TOAUDİO,MessageType.text);
@@ -94,17 +76,12 @@ else if (Config.WORKTYPE == 'public') {
             .withNoVideo()
             .save('output.mp3')
             .on('end', async () => {
-                await message.client.sendMessage(message.jid, fs.readFileSync('output.mp3'), MessageType.audio, {quoted: message.data}, {mimetype: Mimetype.mp4Audio, ptt: false});
+                await message.client.sendMessage(message.jid, fs.readFileSync('output.mp3'), MessageType.audio, {mimetype: Mimetype.mp4Audio, ptt: false});
             });
         return await message.client.deleteMessage(message.jid, {id: downloading.key.id, remoteJid: message.jid, fromMe: true})
     }));
 
-    Asena.addCommand({pattern: 'imagesticker', fromMe: false, desc: Lang.STİCKER_DESC}, (async (message, match) => {    
-
-        if (message.jid === '905524317852-1612300121@g.us') {
-
-            return;
-        }
+    Asena.addCommand({pattern: 'photo', fromMe: false, desc: Lang.STİCKER_DESC}, (async (message, match) => {    
 
         if (message.reply_message === false) return await message.client.sendMessage(message.jid, Lang.STİCKER_NEEDREPLY, MessageType.text);
         var downloading = await message.client.sendMessage(message.jid,Lang.STİCKER,MessageType.text);
@@ -120,7 +97,48 @@ else if (Config.WORKTYPE == 'public') {
             .fromFormat('webp_pipe')
             .save('output.jpg')
             .on('end', async () => {
-                await message.client.sendMessage(message.jid, fs.readFileSync('output.jpg'), MessageType.image, {quoted: message.data}, {mimetype: Mimetype.jpg});
+                await message.client.sendMessage(message.jid, fs.readFileSync('output.jpg'), MessageType.image, {mimetype: Mimetype.jpg});
+            });
+        return await message.client.deleteMessage(message.jid, {id: downloading.key.id, remoteJid: message.jid, fromMe: true})
+    }));
+    Asena.addCommand({pattern: 'mp3', fromMe: true, desc: Lang.MP4TOAUDİO_DESC, dontAddCommandList: true}, (async (message, match) => {    
+
+        if (message.reply_message === false) return await message.client.sendMessage(message.jid, Lang.MP4TOAUDİO_NEEDREPLY, MessageType.text);
+        var downloading = await message.client.sendMessage(message.jid,Lang.MP4TOAUDİO,MessageType.text);
+        var location = await message.client.downloadAndSaveMediaMessage({
+            key: {
+                remoteJid: message.reply_message.jid,
+                id: message.reply_message.id
+            },
+            message: message.reply_message.data.quotedMessage
+        });
+
+        ffmpeg(location)
+            .withNoVideo()
+            .save('output.mp3')
+            .on('end', async () => {
+                await message.client.sendMessage(message.jid, fs.readFileSync('output.mp3'), MessageType.audio, {mimetype: Mimetype.mp4Audio, ptt: false});
+            });
+        return await message.client.deleteMessage(message.jid, {id: downloading.key.id, remoteJid: message.jid, fromMe: true})
+    }));
+
+    Asena.addCommand({pattern: 'photo', fromMe: true, desc: Lang.STİCKER_DESC, dontAddCommandList: true}, (async (message, match) => {   
+ 
+        if (message.reply_message === false) return await message.client.sendMessage(message.jid, Lang.STİCKER_NEEDREPLY, MessageType.text);
+        var downloading = await message.client.sendMessage(message.jid,Lang.STİCKER,MessageType.text);
+        var location = await message.client.downloadAndSaveMediaMessage({
+            key: {
+                remoteJid: message.reply_message.jid,
+                id: message.reply_message.id
+            },
+            message: message.reply_message.data.quotedMessage
+        });
+
+        ffmpeg(location)
+            .fromFormat('webp_pipe')
+            .save('output.jpg')
+            .on('end', async () => {
+                await message.client.sendMessage(message.jid, fs.readFileSync('output.jpg'), MessageType.image, {mimetype: Mimetype.jpg});
             });
         return await message.client.deleteMessage(message.jid, {id: downloading.key.id, remoteJid: message.jid, fromMe: true})
     }));
